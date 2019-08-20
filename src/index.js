@@ -28,13 +28,23 @@ const rrfProps = {
   createFirestoreInstance
 };
 
+// const app = (
+//   <Provider store={store}>
+//     <ReactReduxFirebaseProvider {...rrfProps}>
+//       <BrowserRouter>
+//         <App />
+//       </BrowserRouter>
+//     </ReactReduxFirebaseProvider>
+//   </Provider>
+// );
+
 const app = (
   <Provider store={store}>
-    <ReactReduxFirebaseProvider {...rrfProps}>
+
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </ReactReduxFirebaseProvider>
+
   </Provider>
 );
 

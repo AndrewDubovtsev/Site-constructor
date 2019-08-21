@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 
 export const addText = (message = '') => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
+  return (dispatch, getState) => {
     const firestore = getFirestore();
     const id = uuid();
     firestore.collection('texts').add({

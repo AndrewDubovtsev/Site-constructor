@@ -3,6 +3,7 @@ import {
   Route, Switch, Redirect
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import Header from '../components/Header/Header';
 import HomePage from '../pages/Homepage/Homepage';
 import SignInAndSignUpPage from '../pages/SignInAndSignUp/SignInAndSignUp';

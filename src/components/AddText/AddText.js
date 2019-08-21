@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {addText} from '../../store/actions/textActions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { addText } from '../../store/actions/textActions';
 import FormInput from '../UI/FormInput/FormInput';
 import CustomButton from '../UI/CustomButton/CustomButton';
 
@@ -24,9 +26,8 @@ class AddText extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {addText} = this.props;
-    debugger;
-    const {text} = this.state.text;
+    const { addText } = this.props;
+    const { text } = this.state;
     addText(text);
   };
 
@@ -56,7 +57,11 @@ class AddText extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     addText: (message) => dispatch(addText(message))
-  }
+  };
+};
+
+AddText.propTypes = {
+  addText: PropTypes.func,
 };
 
 export default connect(null, mapDispatchToProps)(AddText);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import FormInput from '../../UI/FormInput/FormInput';
 import CustomButton from '../../UI/CustomButton/CustomButton';
 import { auth } from '../../../firebase/firebaseUtils';

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
 import AppRouter from '../../routers/AppRouter';
 import { setCurrentUser } from '../../store/actions/userActions';
 import { selectCurrentUser } from '../../store/selectors/userSelectors';
@@ -18,22 +19,6 @@ class App extends Component {
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-    //
-    //     userRef.onSnapshot((snapShot) => {
-    //       this.setState(() => ({
-    //         currentUser: {
-    //           id: snapShot.id,
-    //           ...snapShot.data()
-    //         }
-    //       }));
-    //     });
-    //   } else {
-    //     this.setState(() => ({ currentUser: userAuth }));
-    //   }
-    // });
   }
 
   componentWillUnmount() {

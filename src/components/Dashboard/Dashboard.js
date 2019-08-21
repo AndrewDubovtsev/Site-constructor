@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
 import { selectTextsList } from '../../store/selectors/textSelectors';
 import TextsList from '../TextsList/TextsList';
 import AddText from '../AddText/AddText';

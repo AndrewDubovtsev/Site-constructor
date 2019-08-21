@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import { selectCurrentUser } from '../../store/selectors/userSelectors';
 import SignedInLinks from './SignedInLinks/SignedInLinks';
 import SignedOutLinks from './SignedOutLinks/SignedOutLinks';
 import './Header.scss';
@@ -8,10 +12,10 @@ const Header = ({ currentUser }) => (
   <header className="header">
     <nav>
       {
-            currentUser
-              ? <SignedInLinks />
-              : <SignedOutLinks />
-          }
+        currentUser
+          ? <SignedInLinks />
+          : <SignedOutLinks />
+      }
     </nav>
   </header>
 );
@@ -20,4 +24,8 @@ Header.propTypes = {
   currentUser: PropTypes.object
 };
 
-export default Header;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
+
+export default connect(mapStateToProps)(Header);

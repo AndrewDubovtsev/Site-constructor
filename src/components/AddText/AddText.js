@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addText } from '../../store/actions/textActions';
+import { addText } from '../../redux/text/textActions';
 import FormInput from '../UI/FormInput/FormInput';
 import CustomButton from '../UI/CustomButton/CustomButton';
 
@@ -54,11 +54,9 @@ class AddText extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addText: (message) => dispatch(addText(message))
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  addText: (message) => dispatch(addText(message))
+});
 
 AddText.propTypes = {
   addText: PropTypes.func,

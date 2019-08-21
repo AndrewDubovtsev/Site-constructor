@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import AppRouter from '../../routers/AppRouter';
-import { setCurrentUser } from '../../store/actions/userActions';
-import { selectCurrentUser } from '../../store/selectors/userSelectors';
+import { selectCurrentUser } from '../../redux/user/userSelectors';
 import './App.scss';
 
 class App extends Component {
@@ -15,10 +14,6 @@ class App extends Component {
     this.state = {
       currentUser: null
     };
-  }
-
-  componentDidMount() {
-    const { setCurrentUser } = this.props;
   }
 
   componentWillUnmount() {
@@ -40,8 +35,5 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

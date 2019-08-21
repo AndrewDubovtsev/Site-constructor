@@ -23,6 +23,7 @@ class SignUp extends Component {
     const {
       displayName, email, password, confirmPassword
     } = this.state;
+
     if (password !== confirmPassword) {
       this.setState(() => ({
         error: 'Passwords do no match.'
@@ -49,11 +50,11 @@ class SignUp extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    if (value.trim()) {
-      this.setState(() => ({ [name]: value.trim(), error: '' }));
-    } else {
-      this.setState(() => ({ error: `Please enter a valid ${name}.` }));
-    }
+    const trimmedValue = value.trim();
+    this.setState(() => ({
+      [name]: trimmedValue || '',
+      error: trimmedValue ? '' : `Please enter a valid ${name}.`,
+    }));
   };
 
   render() {

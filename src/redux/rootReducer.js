@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import userReducer from './userReducer';
-import textReducer from './textReducer';
+import userReducer from './user/userReducer';
+import textReducer from './text/textReducer';
 
 const persistConfig = {
   key: 'root',

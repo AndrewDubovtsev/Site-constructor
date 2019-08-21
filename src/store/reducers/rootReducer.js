@@ -1,14 +1,18 @@
-import {combineReducers} from 'redux';
-import { firebaseReducer } from 'react-redux-firebase'
-import { firestoreReducer } from 'redux-firestore'
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
 import userReducer from './userReducer';
 import textReducer from './textReducer';
 
+const persistConfig = {
+  key: 'root',
+  storage
+};
+
 const rootReducer = combineReducers({
-  auth: userReducer,
-  text: textReducer,
-  firebase: firebaseReducer,
-  firestore: firestoreReducer
+  user: userReducer,
+  text: textReducer
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);

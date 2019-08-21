@@ -1,11 +1,11 @@
-const initState = {
+const INITIAL_STATE = {
   texts: [
-    {id: '1', message: 'Reducer'},
-    {id: '2', message: 'Redux' }
+    { id: '1', message: 'Reducer' },
+    { id: '2', message: 'Redux' }
   ]
 };
 
-const textReducer = (state = initState, action) => {
+const textReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'ADD_TEXT':
       return state;

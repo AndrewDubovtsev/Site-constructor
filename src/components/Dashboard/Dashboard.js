@@ -1,32 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import { selectTextsList } from '../../store/selectors/textSelectors';
 import TextsList from '../TextsList/TextsList';
 import AddText from '../AddText/AddText';
 
-const Dashboard = ({ texts }) => {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      <TextsList texts={texts} />
-      <AddText />
-    </div>
-  );
-};
+const Dashboard = ({ texts }) => (
+  <div>
+    <h1>Dashboard</h1>
+    <TextsList texts={texts} />
+    <AddText />
+  </div>
+);
 
 Dashboard.propTypes = {
   texts: PropTypes.array
 };
 
-const mapStateToProps = (state) => {
-  return {
-    texts: state.firestore.text.texts
-  }
-};
+const mapStateToProps = createStructuredSelector({
+  texts: selectTextsList
+});
 
-export default compose(
-  firestoreConnect(() => ['texts']),
-  connect(mapStateToProps),
-)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

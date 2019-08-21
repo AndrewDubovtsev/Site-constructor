@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore } from 'redux-persist';
 import logger from 'redux-logger';
-import createSagaMiddleWare from 'redux-saga';
+import createSagaMiddleware from 'redux-saga';
 
 import { EnvironmentTypes } from '../constants/EnvironmentTypes';
 import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas/rootSaga';
 
-const sagaMiddleware = createSagaMiddleWare();
+const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [sagaMiddleware];
 

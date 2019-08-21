@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -6,6 +7,9 @@ module.exports = {
     path: path.join(__dirname, './public'),
     filename: 'bundle.js'
   },
+  plugins: [
+    new HtmlWebpackPlugin()
+  ],
   mode: 'development',
   module: {
     rules: [{
@@ -20,9 +24,9 @@ module.exports = {
         'sass-loader'
       ]
     }, {
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
-    },]
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    }]
   },
   devtool: 'cheap-module-eval-source-map',
   devServer: {

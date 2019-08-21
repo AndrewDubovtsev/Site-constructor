@@ -1,2 +1,2 @@
 import { takeEvery } from 'redux-saga/effects';
-import textActionTypes from '../../constants/TextActionTypes';
+import textActionTypes from './textActionTypes';

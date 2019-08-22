@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+import { signUpStart } from '../../../redux/user/userActions';
 import FormInput from '../../UI/FormInput/FormInput';
 import CustomButton from '../../UI/CustomButton/CustomButton';
-import { auth, createUserProfileDocument } from '../../../firebase/firebaseUtils';
 import './SignUp.scss';
 
 class SignUp extends Component {
@@ -19,7 +21,7 @@ class SignUp extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-
+    const { signUpStart } = this.props;
     const {
       displayName, email, password, confirmPassword
     } = this.state;
@@ -28,32 +30,16 @@ class SignUp extends Component {
       this.setState(() => ({
         error: 'Passwords do no match.'
       }));
-      return;
     }
 
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument(user, { displayName });
-      this.setState(() => ({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        error: ''
-      }));
-    } catch (error) {
-      this.setState(() => ({
-        error: error.message
-      }));
-    }
+    signUpStart({ displayName, email, password });
   };
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    const trimmedValue = value.trim();
     this.setState(() => ({
-      [name]: trimmedValue || '',
-      error: trimmedValue ? '' : `Please enter a valid ${name}.`,
+      [name]: value || '',
+      error: value ? '' : `Please enter a valid ${name}.`,
     }));
   };
 
@@ -106,4 +92,12 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+SignUp.propTypes = {
+  signUpStart: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);

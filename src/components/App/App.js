@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 
 import AppRouter from '../../routers/AppRouter';
 import { selectCurrentUser } from '../../redux/user/userSelectors';
+import { checkUserSession } from '../../redux/user/userActions';
 import './App.scss';
 
 class App extends Component {
-  unsubscribeFromAuth = null;
 
   constructor(props) {
     super(props);
@@ -16,8 +17,9 @@ class App extends Component {
     };
   }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
+  componentDidMount() {
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   render() {
@@ -31,9 +33,16 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  checkUserSession: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession())
+});
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

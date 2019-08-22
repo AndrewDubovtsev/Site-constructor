@@ -1,13 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { auth } from '../../../firebase/firebaseUtils';
+import { signOutStart } from '../../../redux/user/userActions';
 
-const SignedInLinks = () => (
+
+const SignedInLinks = ({ signOutStart }) => (
   <ul className="options">
     <li className="option"><NavLink to="/" exact>Homepage</NavLink></li>
-    <li className="option"><div onClick={() => auth.signOut()}>Sign Out</div></li>
+    <li className="option">
+      <div onClick={signOutStart}>Sign Out</div>
+    </li>
   </ul>
 );
 
-export default SignedInLinks;
+SignedInLinks.propTypes = {
+  signOutStart: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart())
+});
+
+export default connect(null, mapDispatchToProps)(SignedInLinks);

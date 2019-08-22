@@ -8,7 +8,7 @@ import SignedInLinks from './SignedInLinks/SignedInLinks';
 import SignedOutLinks from './SignedOutLinks/SignedOutLinks';
 import './Header.scss';
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, signOutStart }) => (
   <header className="header">
     <nav>
       {
@@ -21,7 +21,7 @@ const Header = ({ currentUser }) => (
 );
 
 Header.propTypes = {
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
